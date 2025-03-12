@@ -4,37 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мои Услуги</title>
+    <!-- Шрифты -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        /* Сброс некоторых стилей по умолчанию */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         /* Глобальные стили */
         body {
             font-family: 'Quicksand', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #1e1e1e, #333);
+            background: linear-gradient(135deg, #1E1E1E, #3B3B3B);
             color: white;
             text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh; /* Изменено с 100vh на min-height */
-            overflow-y: auto; /* Разрешаем вертикальный скролл */
-            box-sizing: border-box;
+            overflow-y: auto; /* Разрешаем скролл */
         }
 
         /* Контейнер */
         .container {
-            padding: 50px;
-            width: 100%;
             max-width: 1200px;
-            background: rgba(255, 255, 255, 0.1);
+            margin: 0 auto;
+            padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(12px);
             animation: fadeIn 1.2s ease-out;
+            margin-top: 40px;
+            margin-bottom: 40px;
         }
 
-        /* Анимация */
+        /* Анимация появления */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -54,14 +57,15 @@
             margin-bottom: 15px;
             font-weight: 600;
             color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
         }
 
         p {
             font-size: 18px;
             color: #EAEAEA;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             line-height: 1.7;
-            max-width: 800px;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -69,24 +73,42 @@
         /* Секция с услугами */
         .services {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
+            /* Сетка, которая подстраивается под разные размеры экрана */
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
-            cursor: pointer;
             text-align: left;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden; /* нужно для псевдоэлемента */
+        }
+
+        /* Эффект свечения при наведении */
+        .service-card::before {
+            content: "";
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            transition: all 0.5s ease;
+        }
+        .service-card:hover::before {
+            left: 100%;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 30px 50px rgba(255, 215, 0, 0.5);
         }
 
         .service-card h3 {
@@ -103,7 +125,7 @@
 
         /* Калькулятор */
         .calculator {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
@@ -111,7 +133,7 @@
             animation: fadeIn 1s ease-out;
         }
 
-        select, input {
+        .calculator select, .calculator input {
             padding: 15px;
             margin: 15px 0;
             border: none;
@@ -120,6 +142,7 @@
             color: #333;
             width: 100%;
             max-width: 320px;
+            outline: none;
         }
 
         .button {
@@ -132,6 +155,7 @@
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
+            border: none;
         }
 
         .button:hover {
@@ -141,7 +165,7 @@
 
         /* Секция доната */
         #donate {
-            margin-top: 50px;
+            margin-top: 30px;
             animation: fadeIn 1s ease-out;
         }
 
@@ -156,6 +180,7 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 2px;
+            border: none;
         }
 
         .donate-button:hover {
@@ -165,7 +190,7 @@
 
         /* Социальные сети */
         .socials {
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         .socials a {
@@ -173,6 +198,7 @@
             font-size: 30px;
             margin: 0 20px;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .socials a:hover {
@@ -181,24 +207,41 @@
         }
 
         /* Адаптивность */
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .container {
-                padding: 25px;
+                margin: 20px;
+                padding: 30px;
             }
 
             h1 {
                 font-size: 32px;
             }
 
+            h2 {
+                font-size: 26px;
+            }
+
+            .service-card h3 {
+                font-size: 22px;
+            }
+
+            .services {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
             .services {
                 grid-template-columns: 1fr 1fr;
             }
-
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
             .button, .donate-button {
                 font-size: 16px;
                 padding: 12px 25px;
             }
-
             .socials a {
                 font-size: 24px;
             }
@@ -208,27 +251,23 @@
             .services {
                 grid-template-columns: 1fr;
             }
-
             h1 {
-                font-size: 24px;
+                font-size: 28px;
             }
-
             .button, .donate-button {
                 font-size: 14px;
                 padding: 10px 20px;
             }
-
             .socials a {
                 font-size: 20px;
             }
         }
-
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Привет! Я предлагаю услуги по созданию сайтов, NFC меток и копирайтингу.</h1>
+        <h1>Привет! Я создаю сайты, NFC метки и пишу тексты.</h1>
 
         <!-- Секция Услуг -->
         <section class="services">
@@ -238,11 +277,11 @@
             </div>
             <div class="service-card">
                 <h3>Продажа NFC меток</h3>
-                <p>Создание эксклюзивных NFC меток для бизнеса и персонализированных нужд.</p>
+                <p>Создание эксклюзивных NFC меток для бизнеса и персональных нужд.</p>
             </div>
             <div class="service-card">
                 <h3>Копирайтинг</h3>
-                <p>Написание эффективных текстов для вашего бизнеса и социальных сетей.</p>
+                <p>Написание эффективных текстов для вашего бизнеса и соцсетей.</p>
             </div>
         </section>
 
@@ -250,47 +289,45 @@
         <section class="calculator">
             <h2>Калькулятор стоимости</h2>
             <select id="service-type">
-                <option value="50">Создание сайта - от 50$</option>
-                <option value="0.5">NFC меткa - от 0.5$</option>
-                <option value="10">Копирайтинг - от 10$</option>
+                <option value="50">Создание сайта — от 50$</option>
+                <option value="0.5">NFC метка — от 0.5$</option>
+                <option value="10">Копирайтинг — от 10$</option>
             </select>
             <input type="number" id="quantity" placeholder="Количество" min="1">
             <button class="button" onclick="calculate()">Рассчитать</button>
             <p id="result"></p>
         </section>
 
-        <!-- Секция доната -->
+        <!-- Донат -->
         <section id="donate">
             <h2>Поддержите меня</h2>
-            <p>Я очень благодарен за любую помощь, чтобы продолжать развивать мои проекты!</p>
-            <div class="donate-button" id="paypal-button-container"></div>
+            <p>Буду очень благодарен за любую помощь! Спасибо за поддержку!</p>
+            <button class="donate-button" id="paypal-button-container"></button>
         </section>
 
         <!-- Социальные сети -->
         <div class="socials">
             <a href="https://t.me/shineSwa" target="_blank">Telegram</a>
-            <a href="#">Instagram</a>
-            <a href="#">LinkedIn</a>
         </div>
     </div>
 
+    <!-- PayPal -->
     <script src="https://www.paypal.com/sdk/js?client-id=BAASfQCbJeNnp3tr1M5ywR9GHbh-3GbVBrLLgKBrB10TaQaEnd1zHn2q9VAfGw5Ue8euqO4i6s1BgcPU2c&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
-
     <script>
         function calculate() {
             let servicePrice = document.getElementById("service-type").value;
             let quantity = document.getElementById("quantity").value || 1;
 
-            // Пересчет стоимости для Молдовы (курсы и цены ориентировочные)
-            let priceInMDL = servicePrice * quantity * 17; // Примерный курс 1 USD = 17 MDL
-
+            // Пересчет стоимости для Молдовы (примерный курс 1 USD = 17 MDL)
+            let priceInMDL = servicePrice * quantity * 17;
             document.getElementById("result").innerText = "Примерная цена: " + priceInMDL + " MDL";
         }
 
+        // Кнопка PayPal
         paypal.HostedButtons({
             hostedButtonId: "S95SXYG34V6AJ",
         }).render("#paypal-button-container");
     </script>
 
 </body>
-            </html>
+    </html>
