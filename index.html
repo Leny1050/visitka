@@ -3,93 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support me</title>
+    <title>Мои Услуги</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
         /* Глобальные стили */
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Quicksand', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #1E1E1E, #3A3A3A);
+            background: linear-gradient(135deg, #1e1e1e, #333);
             color: white;
             text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
+            box-sizing: border-box;
         }
 
         /* Контейнер */
         .container {
+            padding: 50px;
+            width: 100%;
+            max-width: 1200px;
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.2);
-            width: 90%;
-            max-width: 500px;
-            animation: fadeIn 1.2s ease-in-out;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            animation: fadeIn 1.2s ease-out;
         }
 
-        /* Анимация появления */
+        /* Анимация */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Заголовки */
         h1 {
-            font-size: 26px;
+            font-size: 42px;
             color: #FFD700;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #FFD700;
         }
 
         p {
             font-size: 18px;
             color: #EAEAEA;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+            line-height: 1.7;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Анимация кнопки */
-        .donate-button {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
+        /* Секция с услугами */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
-        #paypal-container-S95SXYG34V6AJ {
-            display: inline-block;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .service-card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: left;
         }
 
-        #paypal-container-S95SXYG34V6AJ:hover {
-            transform: scale(1.1);
-            box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.5);
         }
 
-        /* Светящийся эффект */
-        .glow-text {
-            font-size: 20px;
+        .service-card h3 {
+            color: #FFD700;
+            font-size: 26px;
+            margin-bottom: 15px;
             font-weight: bold;
-            text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.8);
         }
+
+        .service-card p {
+            font-size: 16px;
+            color: #EAEAEA;
+        }
+
+        /* Калькулятор */
+        .calculator {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        select, input {
+            padding: 15px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            color: #333;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .button {
+            padding: 15px 30px;
+            background: #FFD700;
+            color: #1E1E1E;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background: #E6C200;
+            transform: scale(1.05);
+        }
+
+        /* Секция доната */
+        #donate {
+            margin-top: 50px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .donate-button {
+            padding: 20px 40px;
+            background-color: #FFD700;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #1E1E1E;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .donate-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Социальные сети */
+        .socials {
+            margin-top: 30px;
+        }
+
+        .socials a {
+            color: #FFD700;
+            font-size: 30px;
+            margin: 0 20px;
+            transition: all 0.3s ease;
+        }
+
+        .socials a:hover {
+            color: white;
+            transform: scale(1.2);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .services {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .button, .donate-button {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+
+            .socials a {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .button, .donate-button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+
+            .socials a {
+                font-size: 20px;
+            }
+        }
+
     </style>
-    <script src="https://www.paypal.com/sdk/js?client-id=BAASfQCbJeNnp3tr1M5ywR9GHbh-3GbVBrLLgKBrB10TaQaEnd1zHn2q9VAfGw5Ue8euqO4i6s1BgcPU2c&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 </head>
 <body>
 
     <div class="container">
-        <h1 class="glow-text">Donate me pls </h1>
-        <p>give me 1 dolarik)).</p>
-        <div class="donate-button">
-            <div id="paypal-container-S95SXYG34V6AJ"></div>
+        <h1>Привет! Я предлагаю услуги по созданию сайтов, NFC меток и копирайтингу.</h1>
+
+        <!-- Секция Услуг -->
+        <section class="services">
+            <div class="service-card">
+                <h3>Создание сайтов</h3>
+                <p>Разработка адаптивных и уникальных сайтов под любой запрос.</p>
+            </div>
+            <div class="service-card">
+                <h3>Продажа NFC меток</h3>
+                <p>Создание эксклюзивных NFC меток для бизнеса и персонализированных нужд.</p>
+            </div>
+            <div class="service-card">
+                <h3>Копирайтинг</h3>
+                <p>Написание эффективных текстов для вашего бизнеса и социальных сетей.</p>
+            </div>
+        </section>
+
+        <!-- Калькулятор -->
+        <section class="calculator">
+            <h2>Калькулятор стоимости</h2>
+            <select id="service-type">
+                <option value="50">Создание сайта - от 50$</option>
+                <option value="0.5">NFC меткa - от 0.5$</option>
+                <option value="10">Копирайтинг - от 10$</option>
+            </select>
+            <input type="number" id="quantity" placeholder="Количество" min="1">
+            <button class="button" onclick="calculate()">Рассчитать</button>
+            <p id="result"></p>
+        </section>
+
+        <!-- Секция доната -->
+        <section id="donate">
+            <h2>Поддержите меня</h2>
+            <p>Я очень благодарен за любую помощь, чтобы продолжать развивать мои проекты!</p>
+            <div class="donate-button" id="paypal-button-container"></div>
+        </section>
+
+        <!-- Социальные сети -->
+        <div class="socials">
+            <a href="https://t.me/shineSwa" target="_blank">Telegram</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
         </div>
     </div>
 
+    <script src="https://www.paypal.com/sdk/js?client-id=BAASfQCbJeNnp3tr1M5ywR9GHbh-3GbVBrLLgKBrB10TaQaEnd1zHn2q9VAfGw5Ue8euqO4i6s1BgcPU2c&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+
     <script>
+        function calculate() {
+            let servicePrice = document.getElementById("service-type").value;
+            let quantity = document.getElementById("quantity").value || 1;
+
+            // Пересчет стоимости для Молдовы (курсы и цены ориентировочные)
+            let priceInMDL = servicePrice * quantity * 17; // Примерный курс 1 USD = 17 MDL
+
+            document.getElementById("result").innerText = "Примерная цена: " + priceInMDL + " MDL";
+        }
+
         paypal.HostedButtons({
             hostedButtonId: "S95SXYG34V6AJ",
-        }).render("#paypal-container-S95SXYG34V6AJ")
+        }).render("#paypal-button-container");
     </script>
 
 </body>
-</html>
+    </html>
