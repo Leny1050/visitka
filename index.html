@@ -1,41 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stylish Website</title>
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Поддержите мой проект</title>
+    <style>
+        /* Глобальные стили */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1E1E1E, #3A3A3A);
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Контейнер */
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        /* Анимация появления */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #EAEAEA;
+            margin-bottom: 20px;
+        }
+
+        /* Анимация кнопки */
+        .donate-button {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #paypal-container-S95SXYG34V6AJ {
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #paypal-container-S95SXYG34V6AJ:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Светящийся эффект */
+        .glow-text {
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.8);
+        }
+    </style>
+    <script src="https://www.paypal.com/sdk/js?client-id=BAASfQCbJeNnp3tr1M5ywR9GHbh-3GbVBrLLgKBrB10TaQaEnd1zHn2q9VAfGw5Ue8euqO4i6s1BgcPU2c&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 </head>
 <body>
-    <div class="card">
-        <h2>Визитка</h2>
-        <h3>флуд по Магической Битве</h3>
-        <button>узнай больше внизу</button>
+
+    <div class="container">
+        <h1 class="glow-text">Поддержите мой проект</h1>
+        <p>Если вам нравится моя работа, вы можете сделать пожертвование через PayPal.</p>
+        <div class="donate-button">
+            <div id="paypal-container-S95SXYG34V6AJ"></div>
+        </div>
     </div>
 
-    <footer>
-        <div class="backdrop"></div>
-        <div class="col col1">
-            <h3>Информация:</h3>
-            <p>хочешь вступить в наш флуд, пиши админам:</p>
-            <p>@Huapryanik</p>
-            <p>@Wellii_chai</p>
-            <p>@Schrol7fl1nt3</p>
-            <p>@Kyling_spirit</p>
-        </div>
-        <div class="col col3">
-            <h3>Будь с нами на связи:</h3>
-            <div class="social">
-                <a href="https://www.tiktok.com/@jujutsu.kaisen121?_t=8nWrxDTKKer&_r=1" target="_blank">
-                    <img src="https://seeklogo.com/images/T/tiktok-app-icon-logo-0F5AD7AE01-seeklogo.com.png" alt="Icon 1">
-                </a>
-                <a href="https://t.me/jujutsukaisenforreal" target="_blank">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRku8_NMJHPR56xur3VJWN1MA1FbFE9p3wj_g&s" alt="Icon 2">
-                </a>
-            </div>
-        </div>
-    </footer>
-    <script src="script.js"></script>
+    <script>
+        paypal.HostedButtons({
+            hostedButtonId: "S95SXYG34V6AJ",
+        }).render("#paypal-container-S95SXYG34V6AJ")
+    </script>
+
 </body>
 </html>
