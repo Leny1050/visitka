@@ -426,6 +426,65 @@
             .socials a {
                 font-size: 20px;
             }
+
+            /* Секция с навыками */
+.skills {
+    padding: 50px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    margin-bottom: 40px;
+    animation: fadeIn 1.2s ease-out;
+}
+
+.skills h2 {
+    font-size: 36px;
+    color: #FFD700;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.skills p {
+    font-size: 18px;
+    color: #EAEAEA;
+    margin-bottom: 40px;
+    line-height: 1.7;
+    max-width: 900px;
+    margin: 0 auto 40px auto;
+}
+
+.skills-grid {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.skill-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.5);
+}
+
+.skill-item h3 {
+    color: #FFD700;
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.skill-item p {
+    font-size: 16px;
+    color: #EAEAEA;
+    line-height: 1.5;
+            }
         }
     </style>
 </head>
@@ -446,6 +505,7 @@
             <li><a href="#services">Услуги</a></li>
             <li><a href="#portfolio">Портфолио</a></li>
             <li><a href="#donate">Донаты</a></li>
+            <li><a href="#skills">Что я умею?</a></li>
         </ul>
     </div>
 
@@ -496,6 +556,44 @@
     </div>
 </section>
 
+<!-- Секция с навыками -->
+<section id="skills" class="skills">
+    <h2>Мои Навыки</h2>
+    <p>Я обладаю широким набором навыков, которые могут помочь вам достичь успеха в разработке сайтов, создании анимаций, а также внедрении новых технологий. Вот что я могу предложить:</p>
+    
+    <div class="skills-grid">
+        <div class="skill-item">
+            <h3>Создание сайтов</h3>
+            <p>Я разрабатываю адаптивные, функциональные и красивые сайты, используя HTML, CSS, JavaScript. Могу создавать сайты с уникальным дизайном и интерактивностью.</p>
+        </div>
+        
+        <div class="skill-item">
+            <h3>Работа с API</h3>
+            <p>Я умею интегрировать сторонние сервисы через API. Применял свои знания для создания сайтов с данными в реальном времени, таких как погода, курсы валют и другие динамические данные.</p>
+        </div>
+
+        <div class="skill-item">
+            <h3>Анимации и UI/UX дизайн</h3>
+            <p>Знаю как делать интерфейсы не только функциональными, но и красивыми. Применяю анимации и визуальные эффекты с помощью CSS и JavaScript, чтобы сайт был более привлекательным и удобным.</p>
+        </div>
+
+        <div class="skill-item">
+            <h3>Копирайтинг</h3>
+            <p>Написание уникальных текстов для сайтов, блогов и маркетинговых материалов. Могу помочь вам создать привлекательный контент, который привлекет внимание ваших клиентов.</p>
+        </div>
+
+        <div class="skill-item">
+            <h3>Работа с Telegram Bot API</h3>
+            <p>Разрабатываю боты для Telegram, с помощью которых можно автоматизировать процессы общения с клиентами, отправки уведомлений, интеграции с внешними сервисами и многое другое.</p>
+        </div>
+
+        <div class="skill-item">
+            <h3>Программирование NFC меток</h3>
+            <p>Я умею программировать NFC метки для различных применений. Это позволяет создавать уникальные решения для бизнеса и персонализированных нужд, таких как доступ, оплата или информация для пользователей.</p>
+        </div>
+    </div>
+</section>
+        
         <!-- Калькулятор -->
         <section id="portfolio" class="calculator">
             <h2>Калькулятор стоимости</h2>
