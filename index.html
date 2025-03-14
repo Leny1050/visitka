@@ -3,45 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мои Услуги</title>
-    <!-- Шрифты -->
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <title>Мои Услуги | ShineSwa</title>
+    <!-- Шрифты и иконки -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Сброс некоторых стилей по умолчанию */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Глобальные стили */
         body {
-            font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(135deg, #2C3E50, #34495E);
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(145deg, #1a2a6c, #b21f1f, #ff5ac1);
             color: white;
             text-align: center;
             overflow-y: auto;
             position: relative;
             font-size: 18px;
-            padding-top: 70px;
+            padding-top: 100px;
+            animation: fadeIn 2s ease-out forwards;
         }
 
-        /* Эффект плавной загрузки */
-        body {
-            opacity: 0;
-            animation: fadeInBody 2s ease-in-out forwards;
-        }
-
-        @keyframes fadeInBody {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
         }
 
-        /* Навигация */
         nav {
             position: fixed;
             top: 20px;
@@ -50,15 +44,15 @@
         }
 
         .menu-btn {
-            width: 45px;
-            height: 45px;
+            width: 55px;
+            height: 55px;
             background-color: rgba(0, 0, 0, 0.8);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             transition: background-color 0.3s, transform 0.3s;
         }
 
@@ -68,24 +62,24 @@
         }
 
         .menu-btn div {
-            width: 24px;
+            width: 30px;
             height: 4px;
             background-color: #FFD700;
-            margin: 4px 0;
+            margin: 5px 0;
             transition: 0.3s;
         }
 
-        /* Скрытое меню */
+        /* Сайдбар */
         .side-menu {
             position: fixed;
             top: 0;
             right: -250px;
             width: 250px;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background: #1c1c1c;
             transition: right 0.3s ease-in-out;
             z-index: 99;
-            padding: 50px 20px;
+            padding: 60px 20px;
             color: white;
             text-align: left;
             box-shadow: -4px 0 15px rgba(0, 0, 0, 0.5);
@@ -126,29 +120,22 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 60px 40px;
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(12px);
-            animation: fadeIn 1.2s ease-out;
-            margin-top: 80px;
+            animation: fadeIn 1.5s ease-out;
+            margin-top: 90px;
             margin-bottom: 40px;
             overflow: hidden;
         }
 
-        /* Анимация появления */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Заголовки */
         h1 {
-            font-size: 48px;
+            font-size: 50px;
             color: #FFD700;
             margin-bottom: 30px;
             font-weight: 700;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
         }
 
         h2 {
@@ -189,6 +176,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .service-card::before {
             content: "";
             position: absolute;
@@ -199,19 +187,23 @@
             background: linear-gradient(120deg, transparent, rgba(255, 215, 0, 0.3), transparent);
             transition: all 0.5s ease;
         }
+
         .service-card:hover::before {
             left: 100%;
         }
+
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 30px 50px rgba(255, 215, 0, 0.5);
         }
+
         .service-card h3 {
             color: #FFD700;
             font-size: 26px;
             margin-bottom: 15px;
             font-weight: bold;
         }
+
         .service-card p {
             font-size: 16px;
             color: #EAEAEA;
@@ -284,7 +276,9 @@
             animation: fadeIn 1s ease-out;
             justify-items: center;
         }
-        .calculator select, .calculator input {
+
+        .calculator select,
+        .calculator input {
             padding: 15px;
             margin: 15px 0;
             border: none;
@@ -295,6 +289,7 @@
             max-width: 320px;
             outline: none;
         }
+
         .button {
             padding: 15px 30px;
             background: #FFD700;
@@ -307,6 +302,7 @@
             transition: all 0.3s ease;
             border: none;
         }
+
         .button:hover {
             background: #E6C200;
             transform: scale(1.05);
@@ -338,12 +334,12 @@
             letter-spacing: 2px;
             border: none;
         }
+
         .donate-button:hover {
             transform: scale(1.1);
             box-shadow: 0 15px 30px rgba(255, 215, 0, 0.6);
         }
 
-        /* Ссылка Buy Me a Coffee */
         .buy-me-coffee {
             display: inline-block;
             background-color: #FF5C5C;
@@ -365,6 +361,7 @@
         .socials {
             margin-top: 40px;
         }
+
         .socials a {
             color: #FFD700;
             font-size: 30px;
@@ -372,6 +369,7 @@
             transition: all 0.3s ease;
             text-decoration: none;
         }
+
         .socials a:hover {
             color: white;
             transform: scale(1.2);
@@ -383,18 +381,23 @@
                 margin: 20px;
                 padding: 30px;
             }
+
             h1 {
                 font-size: 32px;
             }
+
             h2 {
                 font-size: 26px;
             }
+
             .service-card h3 {
                 font-size: 22px;
             }
+
             .services {
                 gap: 30px;
             }
+
             .portfolio-item h3 {
                 font-size: 18px;
             }
@@ -404,14 +407,18 @@
             .services {
                 grid-template-columns: 1fr 1fr;
             }
+
             .container {
                 padding: 20px;
                 margin: 20px;
             }
-            .button, .donate-button {
+
+            .button,
+            .donate-button {
                 font-size: 16px;
                 padding: 12px 25px;
             }
+
             .socials a {
                 font-size: 24px;
             }
@@ -421,22 +428,25 @@
             .services {
                 grid-template-columns: 1fr;
             }
+
             h1 {
                 font-size: 28px;
             }
-            .button, .donate-button {
+
+            .button,
+            .donate-button {
                 font-size: 14px;
                 padding: 10px 20px;
             }
+
             .socials a {
                 font-size: 20px;
             }
         }
-
     </style>
 </head>
-<body>
 
+<body>
     <!-- Навигация -->
     <nav>
         <div class="menu-btn" onclick="toggleMenu()">
@@ -457,13 +467,13 @@
     </div>
 
     <div class="container">
-        <h1>Привет! Я создаю сайты, програмтрую NFC метки и пишу тексты для соц.сетей.</h1>
+        <h1>Привет! Я создаю сайты, програмирую NFC метки и пишу тексты для соц.сетей.</h1>
 
         <!-- Секция Услуг -->
         <section id="services" class="services">
             <div class="service-card">
                 <h3>Создание сайтов</h3>
-                <p>Разработка адаптивных и уникальных сайтов под любой запрос.(цена будет варьироваться от сложности запроса)</p>
+                <p>Разработка адаптивных и уникальных сайтов под любой запрос. (цена будет варьироваться от сложности запроса)</p>
             </div>
             <div class="service-card">
                 <h3>Продажа NFC меток</h3>
@@ -490,7 +500,7 @@
                     <a href="https://leny1050.github.io/burgundy/" target="_blank">
                         <img src="f2.jpg" alt="">
                         <h3>Чат для "Клуба Романтики"</h3>
-                        <p>Сайт для чата в Telegram, посвящённый игре "Клуб романтики". Включает функционал регистрации для определенных людей которые знают данные для входа в систему и работы с базой данных.</p>
+                        <p>Сайт для чата в Telegram, посвящённый игре "Клуб романтики". Включает функционал регистрации для определенных людей, которые знают данные для входа в систему и работы с базой данных.</p>
                     </a>
                 </div>
                 <div class="portfolio-item">
@@ -507,13 +517,13 @@
         <section id="skills" class="skills">
             <h2>Мои Навыки</h2>
             <p>Я обладаю широким набором навыков, которые могут помочь вам достичь успеха в разработке сайтов, создании анимаций, а также внедрении новых технологий. Вот что я могу предложить:</p>
-            
+
             <div class="skills-grid">
                 <div class="skill-item">
                     <h3>Создание сайтов</h3>
                     <p>Я разрабатываю адаптивные, функциональные и красивые сайты, используя HTML, CSS, JavaScript. Могу создавать сайты с уникальным дизайном и интерактивностью.</p>
                 </div>
-                
+
                 <div class="skill-item">
                     <h3>Работа с API</h3>
                     <p>Я умею интегрировать сторонние сервисы через API. Применял свои знания для создания сайтов с данными в реальном времени, таких как погода, курсы валют и другие динамические данные.</p>
@@ -521,7 +531,7 @@
 
                 <div class="skill-item">
                     <h3>Анимации и UI/UX дизайн</h3>
-                    <p>Знаю как делать интерфейсы функциональными и красивыми. Применяю анимации и визуальные эффекты с помощью CSS и JavaScript, чтобы сайт был более привлекательным и удобным.</p>
+                    <p>Знаю, как делать интерфейсы функциональными и красивыми. Применяю анимации и визуальные эффекты с помощью CSS и JavaScript, чтобы сайт был более привлекательным и удобным.</p>
                 </div>
 
                 <div class="skill-item">
@@ -542,13 +552,13 @@
         </section>
 
         <!-- Калькулятор -->
-        <section id="portfolio" class="calculator">
+        <section id="calculator" class="calculator">
             <h2>Калькулятор стоимости</h2>
             <select id="service-type">
                 <option value="50">Создание сайта — от 50$</option>
                 <option value="0.5">NFC метка — от 0.5$</option>
                 <option value="10">Копирайтинг — от 10$</option>
-                <option value="15">Телеграм бот— от 15$</option>
+                <option value="15">Телеграм бот — от 15$</option>
             </select>
             <input type="number" id="quantity" placeholder="Количество" min="1">
             <button class="button" onclick="calculate()">Рассчитать</button>
@@ -593,5 +603,6 @@
             hostedButtonId: "S95SXYG34V6AJ",
         }).render("#paypal-button-container");
     </script>
+
 </body>
     </html>
