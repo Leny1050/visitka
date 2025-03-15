@@ -522,7 +522,7 @@
     </div>
   </div>
   
-  <!-- PayPal Script -->
+ <!-- PayPal Script -->
   <script src="https://www.paypal.com/sdk/js?client-id=BAASfQCbJeNnp3tr1M5ywR9GHbh-3GbVBrLLgKBrB10TaQaEnd1zHn2q9VAfGw5Ue8euqO4i6s1BgcPU2c&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
   <script>
     function toggleMenu() {
@@ -534,6 +534,9 @@
       let priceInMDL = servicePrice * quantity * 17; // Примерный курс 1 USD = 17 MDL
       document.getElementById("result").innerText = "Примерная цена: " + priceInMDL + " MDL";
     }
+    paypal.HostedButtons({
+      hostedButtonId: "S95SXYG34V6AJ",
+    }).render("#paypal-button-container");
   </script>
 </body>
 </html>
