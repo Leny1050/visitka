@@ -42,11 +42,10 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <style>
-    /* Плавная прокрутка для современных браузеров */
+    /* Глобальные стили + плавная прокрутка */
     html {
       scroll-behavior: smooth;
     }
-    /* Глобальный сброс */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Montserrat', sans-serif;
@@ -93,13 +92,6 @@
       margin: 4px 0;
       transition: 0.3s;
     }
-    .nav-logo {
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
-      border: 2px solid #FFD700;
-      object-fit: cover;
-    }
     
     /* Сайдбар */
     .side-menu {
@@ -138,11 +130,12 @@
       padding-bottom: 15px;
     }
     .sidebar-header img {
-      height: 60px;
-      width: 60px;
-      margin-right: 15px;
+      height: 80px;
+      width: 80px;
       border-radius: 50%;
-      border: 2px solid #FFD700;
+      border: 4px solid #FFD700;
+      box-shadow: 0 0 10px rgba(255,215,0,0.8);
+      margin-right: 15px;
     }
     .sidebar-header h2 {
       font-size: 28px;
@@ -198,7 +191,7 @@
     }
     section { margin-bottom: 60px; }
     
-    /* Остальные блоки (услуги, навыки, портфолио, калькулятор, донат) остаются без изменений */
+    /* Остальные блоки (услуги, навыки, портфолио и т.д.) остаются без изменений */
     .services {
       display: flex;
       flex-wrap: wrap;
@@ -341,14 +334,21 @@
     }
     .socials a:hover { transform: scale(1.2); color: white; }
     
-    /* Медиа-запрос для мобильных устройств */
-    @media (max-width: 600px) {
+    /* Адаптивные стили для мобильных устройств */
+    @media (max-width: 768px) {
       .side-menu {
-        width: 80%;
-        right: -80%;
+        width: 100%;
+        right: -100%;
       }
-      .side-menu.open { right: 0; }
-      nav { padding: 0 10px; }
+      .side-menu.open {
+        right: 0;
+      }
+      nav {
+        padding: 0 10px;
+      }
+      .menu-btn {
+        margin-right: 10px;
+      }
     }
   </style>
 </head>
@@ -360,8 +360,9 @@
       <div></div>
       <div></div>
     </div>
+    <!-- Разместим красивый логотип с круглой рамкой в навигации -->
     <a href="https://leny1050.github.io/visitka/">
-      <img class="nav-logo" src="logo.webp" alt="ShineSwa Logo">
+      <img src="logo.webp" alt="ShineSwa Logo" style="height: 60px; width: 60px; border-radius: 50%; border: 3px solid #FFD700; box-shadow: 0 0 8px rgba(255,215,0,0.8);">
     </a>
   </nav>
 
@@ -409,7 +410,7 @@
     </section>
     
     <!-- Навыки -->
-    <section id="skills">
+    <section id="skills" class="skills">
       <h2>Что я умею</h2>
       <p>Мои навыки помогают воплотить самые смелые идеи в реальность. Вот что я могу предложить:</p>
       <div class="skills-grid">
@@ -447,7 +448,7 @@
     </section>
     
     <!-- Портфолио -->
-    <section id="portfolio">
+    <section id="portfolio" class="portfolio">
       <h2>Портфолио</h2>
       <div class="portfolio-grid">
         <div class="portfolio-item">
@@ -495,7 +496,7 @@
     </section>
     
     <!-- Донат -->
-    <section id="donate">
+    <section id="donate" class="donate">
       <h2>Поддержите меня</h2>
       <p>Буду благодарен за любую поддержку!</p>
       <div class="donate-wrapper">
@@ -513,21 +514,26 @@
   <!-- PayPal Script -->
   <script src="https://www.paypal.com/sdk/js?client-id=BAASfQCbJeNnp3tr1M5ywR9GHbh-3GbVBrLLgKBrB10TaQaEnd1zHn2q9VAfGw5Ue8euqO4i6s1BgcPU2c&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
   <script>
-    // Переключение сайдбара
+    // Функция для переключения сайдбара
     function toggleMenu() {
       document.getElementById("side-menu").classList.toggle("open");
     }
-    // Плавная прокрутка для ссылок сайдбара
-    document.querySelectorAll('.side-menu a[href^="#"]').forEach(anchor => {
+    
+    // Плавная прокрутка по клику на ссылки в сайдбаре
+    document.querySelectorAll('.side-menu a').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-        // Закрываем сайдбар после клика (на мобильных)
-        document.getElementById("side-menu").classList.remove("open");
+        // Если ссылка начинается с #
+        if (this.getAttribute('href').startsWith('#')) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+          // Закрываем сайдбар после клика
+          document.getElementById("side-menu").classList.remove("open");
+        }
       });
     });
+    
     // Расчёт стоимости
     function calculate() {
       const servicePrice = document.getElementById("service-type").value;
