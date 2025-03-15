@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат-бот</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .chat-container { width: 400px; background-color: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
+        .chat-box { flex: 1; padding: 20px; overflow-y: auto; }
+        .message { margin-bottom: 15px; }
+        .user-message { text-align: right; }
+        .bot-message { text-align: left; }
+        .message p { display: inline-block; padding: 10px 15px; border-radius: 20px; max-width: 80%; }
+        .user-message p { background-color: #007bff; color: #fff; }
+        .bot-message p { background-color: #e9e9eb; color: #333; }
+        .input-container { display: flex; border-top: 1px solid #ddd; }
+        .input-container input { flex: 1; padding: 15px; border: none; outline: none; }
+        .input-container button { padding: 15px; background-color: #007bff; color: #fff; border: none; cursor: pointer; }
+        .input-container button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="chat-box" id="chat-box">
+        <div class="bot-message message">
+            <p>Здравствуйте! Я чат-бот, готов ответить на ваши вопросы о сайте.</p>
+        </div>
+    </div>
+    <div class="input-container">
+        <input type="text" id="user-input" placeholder="Введите ваш вопрос...">
+        <button onclick="sendMessage()">Отправить</button>
+    </div>
+</div>
+
+<script>
+    let knowledgeBase;
+
+    // Загрузка базы знаний
+    fetch('knowledge_base.json')
+        .then(response => response.json())
+        .then(data => {
+            knowledgeBase = data;
+        });
+
+    function sendMessage() {
+        const userInput = document.getElementById('user-input').value.trim();
+        if (userInput === '') return;
+
+        displayMessage(userInput, 'user');
+        document.getElementById('user-input').value = '';
+
+        const botResponse = getBotResponse(userInput);
+        displayMessage(botResponse, 'bot');
+    }
+
+    function displayMessage(message, sender) {
+        const chatBox = document.getElementById('chat-box');
+        const messageElement = document.createElement('div');
+        messageElement.classList.add(sender + '-message', 'message');
+        const paragraph = document.createElement('p');
+        paragraph.textContent = message;
+        messageElement.appendChild(paragraph);
+        chatBox.appendChild(messageElement);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function getBotResponse(input) {
+        input = input.toLowerCase();
+        for (const key in knowledgeBase) {
+            if (input.includes(key)) {
+                return knowledgeBase[key];
+            }
+        }
+        return 'Извините, я не понял ваш вопрос. Пожалуйста, уточните его.';
+    }
+
+    document.getElementById('user-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+</script>
+
+</body>
+  </html>
