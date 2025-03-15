@@ -13,7 +13,7 @@
   <meta property="og:description" content="Я создаю уникальные сайты, программирую NFC-метки и пишу тексты для социальных сетей.">
   <meta property="og:image" content="https://leny1050.github.io/visitka/prev.webp">
   <meta property="og:url" content="https://leny1050.github.io/visitka/">
-  
+
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Мои Услуги | ShineSwa">
@@ -42,10 +42,11 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <style>
-    /* Глобальные стили и плавная прокрутка */
+    /* Плавная прокрутка для современных браузеров */
     html {
       scroll-behavior: smooth;
     }
+    /* Глобальный сброс */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Montserrat', sans-serif;
@@ -92,8 +93,15 @@
       margin: 4px 0;
       transition: 0.3s;
     }
+    .nav-logo {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      border: 2px solid #FFD700;
+      object-fit: cover;
+    }
     
-    /* Обновлённый сайдбар */
+    /* Сайдбар */
     .side-menu {
       position: fixed;
       top: 0;
@@ -190,7 +198,7 @@
     }
     section { margin-bottom: 60px; }
     
-    /* Остальные блоки остаются прежними */
+    /* Остальные блоки (услуги, навыки, портфолио, калькулятор, донат) остаются без изменений */
     .services {
       display: flex;
       flex-wrap: wrap;
@@ -333,14 +341,14 @@
     }
     .socials a:hover { transform: scale(1.2); color: white; }
     
-    @media (max-width: 992px) {
-      h1 { font-size: 36px; }
-      h2 { font-size: 28px; }
-      .container { padding: 20px; }
-    }
-    @media (max-width: 768px) {
-      .services, .skills-grid, .portfolio-grid { grid-template-columns: 1fr; }
-      .calculator { max-width: 100%; }
+    /* Медиа-запрос для мобильных устройств */
+    @media (max-width: 600px) {
+      .side-menu {
+        width: 80%;
+        right: -80%;
+      }
+      .side-menu.open { right: 0; }
+      nav { padding: 0 10px; }
     }
   </style>
 </head>
@@ -352,6 +360,9 @@
       <div></div>
       <div></div>
     </div>
+    <a href="https://leny1050.github.io/visitka/">
+      <img class="nav-logo" src="logo.webp" alt="ShineSwa Logo">
+    </a>
   </nav>
 
   <!-- Сайдбар -->
@@ -506,6 +517,17 @@
     function toggleMenu() {
       document.getElementById("side-menu").classList.toggle("open");
     }
+    // Плавная прокрутка для ссылок сайдбара
+    document.querySelectorAll('.side-menu a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+        // Закрываем сайдбар после клика (на мобильных)
+        document.getElementById("side-menu").classList.remove("open");
+      });
+    });
     // Расчёт стоимости
     function calculate() {
       const servicePrice = document.getElementById("service-type").value;
