@@ -95,7 +95,7 @@
       width: 300px;
       height: 100vh;
       background: #111;
-      padding: 20px 20px 20px 20px;
+      padding: 20px;
       transition: right 0.4s ease;
       z-index: 99;
       box-shadow: -4px 0 15px rgba(0,0,0,0.7);
@@ -113,7 +113,7 @@
     }
     .side-menu ul li a:hover { color: #E6C200; }
 
-    /* Блок для логотипа и заголовка в сайдбаре */
+    /* Заголовок сайдбара с иконкой */
     .sidebar-header {
       display: flex;
       align-items: center;
@@ -132,9 +132,11 @@
     /* Блок счётчика посетителей */
     .visitor-counter {
       margin-top: 20px;
-      padding-top: 10px;
-      border-top: 1px solid #444;
+      padding: 10px;
+      background-color: #222;
+      border-radius: 8px;
       text-align: center;
+      border: 1px solid #444;
     }
     .visitor-counter i {
       margin-right: 8px;
@@ -145,6 +147,11 @@
       margin-bottom: 10px;
       font-size: 18px;
       color: #FFD700;
+    }
+    .visitor-counter img {
+      max-width: 100%;
+      height: auto;
+      display: inline-block;
     }
     
     /* Основной контейнер */
@@ -344,11 +351,6 @@
       <div></div>
       <div></div>
       <div></div>
-    </div>
-    <!-- Логотип (слева от кнопки или отдельно в навигации) -->
-    <a href="https://leny1050.github.io/visitka/">
-      <img src="logo.webp" alt="ShineSwa Logo" style="height: 50px; width: auto; margin-top: 10px;">
-    </a>
   </nav>
 
   <!-- Сайдбар -->
