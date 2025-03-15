@@ -8,12 +8,12 @@
   <meta name="keywords" content="создание сайтов, NFC метки, копирайтинг, программирование, сайты на заказ, разработка сайтов">
   <meta name="robots" content="index, follow">
   
-  <!-- Open Graph (для соцсетей) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Мои Услуги | ShineSwa">
   <meta property="og:description" content="Я создаю уникальные сайты, программирую NFC-метки и пишу тексты для социальных сетей.">
   <meta property="og:image" content="https://leny1050.github.io/visitka/prev.webp">
   <meta property="og:url" content="https://leny1050.github.io/visitka/">
-
+  
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Мои Услуги | ShineSwa">
@@ -42,7 +42,10 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <style>
-    /* Базовый сброс и стили */
+    /* Глобальные стили и плавная прокрутка */
+    html {
+      scroll-behavior: smooth;
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Montserrat', sans-serif;
@@ -63,7 +66,9 @@
       position: fixed;
       top: 20px;
       left: 20px;
-      z-index: 100;
+      z-index: 110;
+      display: flex;
+      align-items: center;
     }
     .menu-btn {
       width: 55px;
@@ -77,6 +82,7 @@
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       transition: transform 0.3s, background-color 0.3s;
+      margin-right: 15px;
     }
     .menu-btn:hover { transform: scale(1.1); background-color: rgba(0,0,0,0.7); }
     .menu-btn div {
@@ -87,63 +93,71 @@
       transition: 0.3s;
     }
     
-    /* Сайдбар */
+    /* Обновлённый сайдбар */
     .side-menu {
       position: fixed;
       top: 0;
-      right: -300px;
-      width: 300px;
+      right: -400px;
+      width: 400px;
       height: 100vh;
-      background: #111;
-      padding: 20px 20px 20px 20px;
-      transition: right 0.4s ease;
-      z-index: 99;
-      box-shadow: -4px 0 15px rgba(0,0,0,0.7);
+      background: linear-gradient(180deg, #141414, #333);
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      padding: 30px 25px;
+      transition: right 0.5s ease;
+      z-index: 100;
+      box-shadow: -8px 0 25px rgba(0,0,0,0.8);
       overflow-y: auto;
     }
     .side-menu.open { right: 0; }
-    .side-menu ul { list-style: none; padding: 0; }
-    .side-menu ul li { margin: 20px 0; }
+    .side-menu ul { list-style: none; padding: 20px 0; }
+    .side-menu ul li { margin: 15px 0; }
     .side-menu ul li a {
       color: #FFD700;
-      font-size: 20px;
+      font-size: 22px;
       text-decoration: none;
       text-transform: uppercase;
       transition: color 0.3s;
     }
     .side-menu ul li a:hover { color: #E6C200; }
-
-    /* Блок для логотипа и заголовка в сайдбаре */
+    
+    /* Заголовок сайдбара */
     .sidebar-header {
       display: flex;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #555;
+      padding-bottom: 15px;
     }
     .sidebar-header img {
-      height: 40px;
-      width: auto;
-      margin-right: 10px;
+      height: 60px;
+      width: 60px;
+      margin-right: 15px;
+      border-radius: 50%;
+      border: 2px solid #FFD700;
     }
     .sidebar-header h2 {
-      font-size: 22px;
+      font-size: 28px;
       color: #FFD700;
     }
     
-    /* Блок счётчика посетителей */
+    /* Счётчик посетителей */
     .visitor-counter {
-      margin-top: 20px;
-      padding-top: 10px;
-      border-top: 1px solid #444;
+      margin-top: 40px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 15px;
       text-align: center;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.6);
     }
     .visitor-counter i {
-      margin-right: 8px;
-      font-size: 20px;
+      margin-right: 10px;
+      font-size: 26px;
       color: #FFD700;
     }
     .visitor-counter h3 {
       margin-bottom: 10px;
-      font-size: 18px;
+      font-size: 22px;
       color: #FFD700;
     }
     
@@ -176,7 +190,7 @@
     }
     section { margin-bottom: 60px; }
     
-    /* Блок услуг */
+    /* Остальные блоки остаются прежними */
     .services {
       display: flex;
       flex-wrap: wrap;
@@ -191,7 +205,6 @@
       box-shadow: 0 15px 30px rgba(0,0,0,0.5);
       transition: transform 0.3s, box-shadow 0.3s;
       text-align: center;
-      position: relative;
       overflow: hidden;
     }
     .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(255,215,0,0.6); }
@@ -199,7 +212,6 @@
     .service-card h3 { font-size: 24px; margin-bottom: 10px; }
     .service-card p { font-size: 16px; color: #ccc; }
     
-    /* Блок навыков */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -219,7 +231,6 @@
     .skill-item h3 { font-size: 22px; margin-bottom: 10px; }
     .skill-item p { font-size: 16px; color: #ccc; }
     
-    /* Блок портфолио */
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -241,7 +252,6 @@
     .portfolio-info h3 { font-size: 22px; margin-bottom: 10px; color: #FFD700; }
     .portfolio-info p { font-size: 16px; color: #ccc; }
     
-    /* Блок калькулятора */
     .calculator {
       background: rgba(255,255,255,0.1);
       border-radius: 15px;
@@ -275,7 +285,6 @@
     }
     .button:hover { transform: scale(1.05); }
     
-    /* Блок доната */
     #donate {
       text-align: center;
       margin-top: 40px;
@@ -312,7 +321,6 @@
     }
     .buy-me-coffee:hover { background: #E05C5C; }
     
-    /* Социальные ссылки */
     .socials {
       margin-top: 40px;
     }
@@ -325,7 +333,6 @@
     }
     .socials a:hover { transform: scale(1.2); color: white; }
     
-    /* Адаптивность */
     @media (max-width: 992px) {
       h1 { font-size: 36px; }
       h2 { font-size: 28px; }
@@ -349,7 +356,6 @@
 
   <!-- Сайдбар -->
   <div class="side-menu" id="side-menu">
-    <!-- Заголовок сайдбара с иконкой -->
     <div class="sidebar-header">
       <img src="logo.webp" alt="ShineSwa Logo">
       <h2>Меню</h2>
@@ -361,11 +367,10 @@
       <li><a href="#donate">Донаты</a></li>
       <li><a href="#calculator">Калькулятор</a></li>
     </ul>
-    <!-- Блок счётчика посетителей -->
     <div class="visitor-counter">
       <h3><i class="fas fa-users"></i> Посетители</h3>
       <a href="https://www.hitwebcounter.com" target="_blank">
-        <img src="https://hitwebcounter.com/counter/counter.php?page=19653564&style=0001&nbdigits=4&type=page&initCount=0" alt="Счётчик посетителей" border="0" />
+        <img src="https://hitwebcounter.com/counter/counter.php?page=19653564&style=0001&nbdigits=4&type=page&initCount=0" alt="Счётчик посетителей" border="0">
       </a>
     </div>
   </div>
@@ -491,25 +496,23 @@
     <!-- Социальные сети -->
     <div class="socials">
       <a href="https://t.me/shineSwa" target="_blank"><i class="fab fa-telegram"></i></a>
-      <!-- Дополнительные соцсети можно добавить здесь -->
     </div>
   </div>
   
   <!-- PayPal Script -->
   <script src="https://www.paypal.com/sdk/js?client-id=BAASfQCbJeNnp3tr1M5ywR9GHbh-3GbVBrLLgKBrB10TaQaEnd1zHn2q9VAfGw5Ue8euqO4i6s1BgcPU2c&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
   <script>
+    // Переключение сайдбара
     function toggleMenu() {
       document.getElementById("side-menu").classList.toggle("open");
     }
+    // Расчёт стоимости
     function calculate() {
       const servicePrice = document.getElementById("service-type").value;
       const quantity = document.getElementById("quantity").value || 1;
       let priceInMDL = servicePrice * quantity * 17; // Примерный курс 1 USD = 17 MDL
       document.getElementById("result").innerText = "Примерная цена: " + priceInMDL + " MDL";
     }
-    paypal.HostedButtons({
-      hostedButtonId: "S95SXYG34V6AJ",
-    }).render("#paypal-button-container");
   </script>
 </body>
 </html>
