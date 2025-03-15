@@ -13,14 +13,14 @@
   <meta property="og:description" content="Я создаю уникальные сайты, программирую NFC-метки и пишу тексты для социальных сетей.">
   <meta property="og:image" content="https://leny1050.github.io/visitka/prev.webp">
   <meta property="og:url" content="https://leny1050.github.io/visitka/">
-
+  
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Мои Услуги | ShineSwa">
   <meta name="twitter:description" content="Я создаю уникальные сайты, программирую NFC-метки и пишу тексты для социальных сетей.">
   <meta name="twitter:image" content="https://leny1050.github.io/visitka/prev.webp">
   <meta name="twitter:url" content="https://leny1050.github.io/visitka/">
-
+  
   <!-- Структурированные данные (JSON-LD) -->
   <script type="application/ld+json">
   {
@@ -35,17 +35,18 @@
     }
   }
   </script>
-
+  
   <!-- Шрифты и иконки -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-
+  
   <style>
-    /* Глобальные стили + плавная прокрутка */
+    /* Плавная прокрутка через CSS */
     html {
       scroll-behavior: smooth;
     }
+    /* Глобальные стили */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Montserrat', sans-serif;
@@ -93,6 +94,23 @@
       transition: 0.3s;
     }
     
+    /* Логотип в круглом контейнере */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border: 2px solid #FFD700;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .logo-container img {
+      width: 100%;
+      height: auto;
+    }
+    
     /* Сайдбар */
     .side-menu {
       position: fixed;
@@ -130,12 +148,11 @@
       padding-bottom: 15px;
     }
     .sidebar-header img {
-      height: 80px;
-      width: 80px;
-      border-radius: 50%;
-      border: 4px solid #FFD700;
-      box-shadow: 0 0 10px rgba(255,215,0,0.8);
+      height: 60px;
+      width: 60px;
       margin-right: 15px;
+      border-radius: 50%;
+      border: 2px solid #FFD700;
     }
     .sidebar-header h2 {
       font-size: 28px;
@@ -191,13 +208,8 @@
     }
     section { margin-bottom: 60px; }
     
-    /* Остальные блоки (услуги, навыки, портфолио и т.д.) остаются без изменений */
-    .services {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-    }
+    /* Остальные блоки (услуги, навыки, портфолио, калькулятор, донат, соцсети) остаются без значительных изменений */
+    .services { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
     .service-card {
       background: rgba(255,255,255,0.1);
       border-radius: 15px;
@@ -246,10 +258,7 @@
     }
     .portfolio-item:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(255,215,0,0.6); }
     .portfolio-item img { width: 100%; height: auto; display: block; }
-    .portfolio-info {
-      padding: 15px;
-      text-align: left;
-    }
+    .portfolio-info { padding: 15px; text-align: left; }
     .portfolio-info h3 { font-size: 22px; margin-bottom: 10px; color: #FFD700; }
     .portfolio-info p { font-size: 16px; color: #ccc; }
     
@@ -334,21 +343,21 @@
     }
     .socials a:hover { transform: scale(1.2); color: white; }
     
-    /* Адаптивные стили для мобильных устройств */
+    /* Медиа-запрос для мобильных устройств */
     @media (max-width: 768px) {
       .side-menu {
-        width: 100%;
-        right: -100%;
+        width: 250px;
+        right: -250px;
       }
-      .side-menu.open {
-        right: 0;
-      }
-      nav {
-        padding: 0 10px;
-      }
-      .menu-btn {
-        margin-right: 10px;
-      }
+      .side-menu.open { right: 0; }
+      nav { flex-direction: column; }
+      .menu-btn { margin-right: 0; margin-bottom: 10px; }
+    }
+    
+    @media (max-width: 992px) {
+      h1 { font-size: 36px; }
+      h2 { font-size: 28px; }
+      .container { padding: 20px; }
     }
   </style>
 </head>
@@ -360,12 +369,13 @@
       <div></div>
       <div></div>
     </div>
-    <!-- Разместим красивый логотип с круглой рамкой в навигации -->
-    <a href="https://leny1050.github.io/visitka/">
-      <img src="logo.webp" alt="ShineSwa Logo" style="height: 60px; width: 60px; border-radius: 50%; border: 3px solid #FFD700; box-shadow: 0 0 8px rgba(255,215,0,0.8);">
-    </a>
+    <div class="logo-container">
+      <a href="https://leny1050.github.io/visitka/">
+        <img src="logo.webp" alt="ShineSwa Logo">
+      </a>
+    </div>
   </nav>
-
+  
   <!-- Сайдбар -->
   <div class="side-menu" id="side-menu">
     <div class="sidebar-header">
@@ -386,7 +396,7 @@
       </a>
     </div>
   </div>
-
+  
   <div class="container">
     <h1>Привет! Я создаю сайты, программирую NFC-метки и пишу тексты для соцсетей.</h1>
     
@@ -410,7 +420,7 @@
     </section>
     
     <!-- Навыки -->
-    <section id="skills" class="skills">
+    <section id="skills">
       <h2>Что я умею</h2>
       <p>Мои навыки помогают воплотить самые смелые идеи в реальность. Вот что я могу предложить:</p>
       <div class="skills-grid">
@@ -448,7 +458,7 @@
     </section>
     
     <!-- Портфолио -->
-    <section id="portfolio" class="portfolio">
+    <section id="portfolio">
       <h2>Портфолио</h2>
       <div class="portfolio-grid">
         <div class="portfolio-item">
@@ -496,7 +506,7 @@
     </section>
     
     <!-- Донат -->
-    <section id="donate" class="donate">
+    <section id="donate">
       <h2>Поддержите меня</h2>
       <p>Буду благодарен за любую поддержку!</p>
       <div class="donate-wrapper">
@@ -514,25 +524,10 @@
   <!-- PayPal Script -->
   <script src="https://www.paypal.com/sdk/js?client-id=BAASfQCbJeNnp3tr1M5ywR9GHbh-3GbVBrLLgKBrB10TaQaEnd1zHn2q9VAfGw5Ue8euqO4i6s1BgcPU2c&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
   <script>
-    // Функция для переключения сайдбара
+    // Функция переключения сайдбара
     function toggleMenu() {
       document.getElementById("side-menu").classList.toggle("open");
     }
-    
-    // Плавная прокрутка по клику на ссылки в сайдбаре
-    document.querySelectorAll('.side-menu a').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        // Если ссылка начинается с #
-        if (this.getAttribute('href').startsWith('#')) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-          });
-          // Закрываем сайдбар после клика
-          document.getElementById("side-menu").classList.remove("open");
-        }
-      });
-    });
     
     // Расчёт стоимости
     function calculate() {
@@ -541,6 +536,21 @@
       let priceInMDL = servicePrice * quantity * 17; // Примерный курс 1 USD = 17 MDL
       document.getElementById("result").innerText = "Примерная цена: " + priceInMDL + " MDL";
     }
+    
+    // Плавная прокрутка при клике на якорные ссылки и закрытие сайдбара (для мобильных)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+        // Закрываем сайдбар, если он открыт (на мобильных)
+        if(document.getElementById("side-menu").classList.contains("open")){
+          document.getElementById("side-menu").classList.remove("open");
+        }
+      });
+    });
   </script>
 </body>
 </html>
