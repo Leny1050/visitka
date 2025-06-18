@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ShineSwa — начинающий веб-разработчик</title>
+  <title>Портфолио — начинающий веб-разработчик</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -163,6 +163,7 @@
       -webkit-background-clip:text; color:transparent;
       margin-bottom:var(--gap);
       position:relative;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .section h2::after {
       content:""; position:absolute; left:50%; bottom:-12px;
@@ -204,16 +205,24 @@
       height:200px; object-fit:cover; margin-bottom:1rem;
     }
 
-    /* Tags */
+    /* Tags – улучшенный вид навыков */
     .tags {
       display:flex; flex-wrap:wrap; gap:1rem; justify-content:center;
     }
     .tag {
-      background:rgba(255,255,255,0.05); padding:.5rem 1.5rem;
-      border-radius:30px; font-size:.85rem; color:var(--text-dim);
-      transition:background .3s ease,color .3s ease;
+      background: var(--accent);
+      color: #fff;
+      padding: .75rem 1.5rem;
+      border-radius: 30px;
+      font-size: .95rem;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: background .3s ease, transform .3s ease;
     }
-    .tag:hover { background:var(--accent); color:#fff; }
+    .tag:hover {
+      background: var(--accent2);
+      transform: scale(1.05);
+    }
 
     /* Timeline */
     .timeline { position:relative; margin-top:2rem; padding-left:2.5rem; }
@@ -237,10 +246,26 @@
     .point h4 { font-size:1rem; margin-bottom:.3rem; }
     .point small { font-size:.85rem; color:var(--text-dim); }
 
-    /* Donate */
-    .box {
-      max-width:420px; margin:auto; padding:2rem;
-      text-align:center; color:var(--text-dim);
+    /* ——— Donate section styling ——— */
+    #donate .box.no-tilt {
+      max-width: 420px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      border-radius: var(--radius);
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.08) 0%,
+        rgba(255,255,255,0.02) 100%
+      );
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.6);
+    }
+    /* Центрируем PayPal-кнопку */
+    #paypal-button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
     }
 
     /* Socials & Footer */
@@ -341,13 +366,6 @@
           <p>Погода через API.</p>
         </a>
       </article>
-      <article class="card glass center portfolio-item" data-aos="zoom-in" data-aos-delay="240">
-        <a href="https://leny1050.github.io/burgundy/" target="_blank">
-          <img src="f2.jpg" alt="Firebase Chat">
-          <h3>Firebase Chat</h3>
-          <p>Чат на JavaScript (WIP).</p>
-        </a>
-      </article>
       <article class="card glass center portfolio-item" data-aos="zoom-in" data-aos-delay="320">
         <a href="https://leny1050.github.io/test/" target="_blank">
           <img src="f3.jpg" alt="Math Art">
@@ -369,23 +387,28 @@
   <section id="skills" class="section">
     <h2 data-aos="fade-up">Мои навыки</h2>
     <div class="tags container center" data-aos="zoom-in">
-      <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
-      <span class="tag">PHP (Basics)</span><span class="tag">Python (Basics)</span><span class="tag">MySQL</span>
-      <span class="tag">VS Code</span><span class="tag">Git</span>
+      <span class="tag">HTML</span>
+      <span class="tag">CSS</span>
+      <span class="tag">JavaScript</span>
+      <span class="tag">PHP (Basics)</span>
+      <span class="tag">Python (Basics)</span>
+      <span class="tag">MySQL</span>
+      <span class="tag">VS Code</span>
+      <span class="tag">Git</span>
     </div>
     <div class="timeline container">
-      <div class="point"><h4>2023 — Старт</h4><small>Основы HTML/CSS</small></div>
-      <div class="point"><h4>2024 — JavaScript</h4><small>Первый интерактивный функционал</small></div>
-      <div class="point"><h4>2025 — Backend основа</h4><small>PHP, Python, работа с БД</small></div>
+      <div><h4>2023 — Старт</h4><small>Основы HTML/CSS</small></div>
+      <div><h4>2024 — JavaScript</h4><small>Первый интерактивный функционал</small></div>
+      <div><h4>2025 — Backend основа</h4><small>PHP, Python, работа с БД</small></div>
     </div>
   </section>
 
   <!-- Donate -->
   <section id="donate" class="section">
     <h2 data-aos="fade-up">Поддержать развитие</h2>
-    <div class="box glass center container" data-aos="zoom-in">
+    <div class="box glass no-tilt center container" data-aos="zoom-in">
       <p>Любой донат ускорит выпуск новых проектов 🚀</p>
-      <div id="paypal-button-container" style="margin-top:1.6rem;"></div>
+      <div id="paypal-button-container"></div>
     </div>
   </section>
 
@@ -413,14 +436,15 @@
 
     // Typed.js
     new Typed('#typed', {
-      strings: ['HTML-сайтов','лендингов','учебных проектов'],
+      strings: ['HTML-сайтов', 'лендингов', 'учебных проектов'],
       typeSpeed: 70, backSpeed: 35, backDelay: 1600, loop: true
     });
 
-    // Vanilla Tilt
-    VanillaTilt.init(document.querySelectorAll('.glass'), {
-      max: 15, speed: 400, glare: true, 'max-glare': 0.25
-    });
+    // Vanilla Tilt, исключая donate-карточку
+    VanillaTilt.init(
+      document.querySelectorAll('.glass:not(.no-tilt)'),
+      { max: 15, speed: 400, glare: true, 'max-glare': 0.25 }
+    );
 
     // GSAP ScrollTrigger for timeline points
     gsap.registerPlugin(ScrollTrigger);
