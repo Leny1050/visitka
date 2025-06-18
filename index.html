@@ -55,13 +55,14 @@
       align-items: center;
       text-align: center;
     }
+
     .container {
       width: min(1200px, 90%);
       margin: auto;
     }
     h1,h2,h3,h4 { font-family: 'Poppins', sans-serif; color: var(--text); }
 
-    /* Background Canvas */
+    /* Фоновой Canvas для 3D */
     canvas#backgroundCanvas {
       position: fixed; top:0; left:0;
       width:100%; height:100%;
@@ -78,7 +79,7 @@
       border-radius: var(--radius);
     }
 
-    /* Navigation */
+    /* Навигация */
     nav {
       position: fixed; top:0; left:0; width:100%;
       background: var(--bg-alt);
@@ -109,21 +110,54 @@
       transform:scaleX(0); transform-origin:left;
       transition:transform .3s ease;
     }
-    .links a:hover, .links a.active { color:var(--accent); }
-    .links a:hover::after, .links a.active::after { transform:scaleX(1); }
-    .burger {
-      display:none; font-size:1.5rem; color:var(--text); cursor:pointer;
+    .links a:hover,
+    .links a.active {
+      color:var(--accent);
     }
+    .links a:hover::after,
+    .links a.active::after {
+      transform:scaleX(1);
+    }
+    .burger {
+      display:none; font-size:1.5rem; color:var(--text); background:none; border:none; cursor:pointer;
+    }
+
+    /* Overlay при открытом меню */
+    body.nav-open::after {
+      content: "";
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* Mobile nav */
     @media(max-width:768px){
       .burger { display:block; }
       .links {
-        position:fixed; top:4.5rem; left:0; width:100%;
-        flex-direction:column; background:var(--bg-alt);
-        transform:translateY(-100%); transition:transform .4s ease;
-        padding:2rem 0; gap:1rem;
+        position: fixed;
+        top: 0; right: 0;
+        width: 80%; height: 100vh;
+        background: var(--bg-alt);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transform: translateX(100%);
+        transition: transform .3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 4rem;
+        gap: 2rem;
+        z-index: 1000;
       }
-      .links.open { transform:translateY(0); }
-      .links a { font-size:1.2rem; }
+      .links.open {
+        transform: translateX(0);
+      }
+      .links a {
+        font-size: 1.25rem;
+        color: var(--text-dim);
+      }
     }
 
     /* Hero */
@@ -154,9 +188,8 @@
     }
     .btn:hover { transform:translateY(-3px); }
 
-    /* Sections & Scroll Offset */
+    /* Sections */
     .section { padding:4.5rem 0; position:relative; z-index:1; }
-    section, header.hero { scroll-margin-top:5rem; }
     .section h2 {
       font-size:clamp(2rem,4vw,2.8rem); text-align:center;
       background:linear-gradient(90deg,var(--accent),var(--accent2));
@@ -234,6 +267,7 @@
       position:relative; margin-bottom:2rem;
       opacity:0; transform:translateY(30px);
       transition:opacity .6s ease,transform .6s ease;
+      padding-left:1rem;
     }
     .point.visible {
       opacity:1; transform:translateY(0);
@@ -246,38 +280,43 @@
     .point h4 { font-size:1rem; margin-bottom:.3rem; }
     .point small { font-size:.85rem; color:var(--text-dim); }
 
-    /* Donate section */
-    #donate .box.no-tilt {
-      max-width:420px; width:100%;
-      margin:0 auto; padding:3rem 2rem;
-      border-radius: var(--radius);
-      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+    /* Donate */
+    .donate-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+    .donate-card {
+      max-width: 480px;
+      width: 100%;
+      padding: 2rem;
+      background: linear-gradient(135deg,
+        rgba(117,107,255,0.15) 0%,
+        rgba(143,21,255,0.15) 100%);
       border: 1px solid rgba(255,255,255,0.2);
       box-shadow: 0 12px 36px rgba(0,0,0,0.6);
-      display:flex; flex-direction:column; align-items:center;
+      border-radius: var(--radius);
+      text-align: center;
     }
-    #donate .box h3 {
-      font-size:1.5rem; margin-bottom:0.75rem; color:var(--text);
+    .donate-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      color: var(--text);
     }
-    #donate .box p {
-      font-size:1rem; margin-bottom:1.5rem;
-    }
-    #paypal-button-container {
-      display:flex; justify-content:center; width:100%;
-    }
-    #paypal-button-container > div { width:100% !important; }
 
     /* Socials & Footer */
-    .socials { display:flex; justify-content:center; gap:2rem; margin:3rem 0 1rem; }
+    .socials {
+      display:flex; justify-content:center; gap:2rem;
+      margin:3rem 0 1rem;
+    }
     .socials a {
       font-size:1.8rem; color:var(--text-dim);
       transition:color .3s ease,transform .3s ease;
     }
     .socials a:hover { color:var(--accent); transform:rotate(12deg); }
-    footer { text-align:center; font-size:.85rem; color:var(--text-dim); padding:2rem 0; }
-
-    /* Body lock */
-    body.no-scroll { overflow:hidden; }
+    footer {
+      text-align:center; font-size:.85rem; color:var(--text-dim);
+      padding:2rem 0;
+    }
   </style>
 </head>
 <body>
@@ -286,12 +325,12 @@
   <canvas id="backgroundCanvas"></canvas>
 
   <!-- Navigation -->
-  <nav role="navigation" aria-label="Главное меню">
+  <nav>
     <div class="nav-wrap container">
       <div class="logo">Портфолио</div>
-      <div class="burger" id="burger" role="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="links">
+      <button class="burger" id="burger" aria-label="Открыть меню">
         <i class="fas fa-bars"></i>
-      </div>
+      </button>
       <div class="links" id="links">
         <a href="#services">Услуги</a>
         <a href="#portfolio">Портфолио</a>
@@ -305,7 +344,9 @@
   <header class="hero">
     <div class="hero-content glass center container" data-aos="zoom-out">
       <h1>Я — начинающий разработчик <span id="typed">сайтов</span></h1>
-      <p data-aos="fade-up" data-aos-delay="200">Знаю основы HTML, CSS, JavaScript и немного backend. Учусь быстро и люблю создавать красивые, живые страницы.</p>
+      <p data-aos="fade-up" data-aos-delay="200">
+        Знаю основы HTML, CSS, JavaScript и немного backend. Учусь быстро и люблю создавать красивые, живые страницы.
+      </p>
       <a href="https://t.me/shineSwa" class="btn" data-aos="zoom-in" data-aos-delay="400">Связаться</a>
     </div>
   </header>
@@ -340,7 +381,7 @@
   <!-- Portfolio -->
   <section id="portfolio" class="section">
     <h2 data-aos="fade-up">Мои учебные проекты</h2>
-    <div class="grid grid-3.container">
+    <div class="grid grid-3 container">
       <article class="card glass center portfolio-item" data-aos="zoom-in">
         <a href="https://usermanagerpro.free.nf/public/index.php" target="_blank">
           <img src="f4.png" alt="User Manager Pro">
@@ -348,21 +389,21 @@
           <p>PHP + MySQL регистрация.</p>
         </a>
       </article>
-      <article class="card glass.center portfolio-item" data-aos="zoom-in" data-aos-delay="80">
+      <article class="card glass center portfolio-item" data-aos="zoom-in" data-aos-delay="80">
         <a href="https://commentsystem.free.nf/index.html" target="_blank">
           <img src="f5.png" alt="Comment System">
           <h3>Comment System</h3>
           <p>Ajax-комментарии (WIP).</p>
         </a>
       </article>
-      <article class="card glass.center portfolio-item" data-aos="zoom-in" data-aos-delay="160">
+      <article class="card glass center portfolio-item" data-aos="zoom-in" data-aos-delay="160">
         <a href="https://leny1050.github.io/weather-app/" target="_blank">
           <img src="f1.jpg" alt="Weather App">
           <h3>Weather App</h3>
           <p>Погода через API.</p>
         </a>
       </article>
-      <article class="card glass.center portfolio-item" data-aos="zoom-in" data-aos-delay="320">
+      <article class="card glass center portfolio-item" data-aos="zoom-in" data-aos-delay="320">
         <a href="https://leny1050.github.io/test/" target="_blank">
           <img src="f3.jpg" alt="Math Art">
           <h3>Math Art</h3>
@@ -386,19 +427,20 @@
       <span class="tag">Git</span>
     </div>
     <div class="timeline container">
-      <div class="point" data-aos="fade-up"><h4>1 — HTML, CSS</h4><small>Основы HTML/CSS</small></div>
-      <div class="point" data-aos="fade-up" data-aos-delay="100"><h4>2 — JavaScript</h4><small>Первый интерактивный функционал</small></div>
-      <div class="point" data-aos="fade-up" data-aos-delay="200"><h4>3 — Backend основа</h4><small>PHP, Python, работа с БД</small></div>
+      <div class="point"><h4>1 — HTML, CSS</h4><small>Основы HTML/CSS</small></div>
+      <div class="point"><h4>2 — JavaScript</h4><small>Первый интерактивный функционал</small></div>
+      <div class="point"><h4>3 — Backend основа</h4><small>PHP, Python, работа с БД</small></div>
     </div>
   </section>
 
   <!-- Donate -->
   <section id="donate" class="section">
     <h2 data-aos="fade-up">Поддержать развитие</h2>
-    <div class="box glass no-tilt center container" data-aos="zoom-in">
-      <h3>Поддержка проекта</h3>
-      <p>Любой донат ускорит выпуск новых проектов 🚀</p>
-      <div id="paypal-button-container"></div>
+    <div class="donate-wrapper container" data-aos="zoom-in">
+      <div class="donate-card glass no-tilt">
+        <h3>Любой донат ускорит выпуск новых проектов 🚀</h3>
+        <div id="paypal-button-container"></div>
+      </div>
     </div>
   </section>
 
@@ -408,65 +450,74 @@
   </div>
   <footer>&copy; 2025 ShineSwa — новичок, который растёт каждый день.</footer>
 
-  <!-- Scripts -->
+  <!-- Скрипты UI -->
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+
   <script>
+    // AOS
     AOS.init({ duration: 800, once: true });
 
+    // Burger toggle + overlay
     const burger = document.getElementById('burger');
-    const linksEl = document.getElementById('links');
+    const links  = document.getElementById('links');
+
     burger.addEventListener('click', () => {
-      linksEl.classList.toggle('open');
-      document.body.classList.toggle('no-scroll');
-      const expanded = burger.getAttribute('aria-expanded') === 'true' ? 'false' : 'true';
-      burger.setAttribute('aria-expanded', expanded);
+      const open = links.classList.toggle('open');
+      document.body.classList.toggle('nav-open', open);
     });
 
-    // Scroll spy
-    const sections = document.querySelectorAll('section[id], header.hero');
-    const navLinks = document.querySelectorAll('.links a');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const id = entry.target.id;
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
-        }
-      });
-    }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
-    sections.forEach(sec => observer.observe(sec));
-
-    // Close mobile menu on link click
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        if (linksEl.classList.contains('open')) {
-          linksEl.classList.remove('open');
-          document.body.classList.remove('no-scroll');
-          burger.setAttribute('aria-expanded', 'false');
-        }
+    // Close menu on link click
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        links.classList.remove('open');
+        document.body.classList.remove('nav-open');
       });
     });
 
+    // Typed.js
     new Typed('#typed', {
       strings: ['HTML-сайтов', 'лендингов', 'учебных проектов'],
       typeSpeed: 70, backSpeed: 35, backDelay: 1600, loop: true
     });
 
-    VanillaTilt.init(document.querySelectorAll('.glass:not(.no-tilt)'), { max: 15, speed: 400, glare: true, 'max-glare': 0.25 });
+    // Vanilla Tilt, исключая donate
+    VanillaTilt.init(
+      document.querySelectorAll('.glass:not(.no-tilt)'),
+      { max: 15, speed: 400, glare: true, 'max-glare': 0.25 }
+    );
 
+    // ScrollSpy через IntersectionObserver
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const id = entry.target.getAttribute('id');
+        const link = document.querySelector(`.links a[href="#${id}"]`);
+        if (link) {
+          link.classList.toggle('active', entry.isIntersecting);
+        }
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('section[id]').forEach(sec => observer.observe(sec));
+
+    // GSAP ScrollTrigger для таймлайна
     gsap.registerPlugin(ScrollTrigger);
     document.querySelectorAll('.point').forEach(pt => {
-      ScrollTrigger.create({ trigger: pt, start: 'top 85%', onEnter: () => pt.classList.add('visible') });
+      ScrollTrigger.create({
+        trigger: pt,
+        start: 'top 85%',
+        onEnter: () => pt.classList.add('visible')
+      });
     });
   </script>
 
   <!-- PayPal -->
   <script src="https://www.paypal.com/sdk/js?client-id=BAASfQCbJeNnp3tr1M5ywR9GHbh-3GbVBrLLgKBrB10TaQaEnd1zHn2q9VAfGw5Ue8euqO4i6s1BgcPU2c&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
   <script>
-    paypal.HostedButtons({ hostedButtonId: 'S95SXYG34V6AJ' }).render('#paypal-button-container');
+    paypal.HostedButtons({ hostedButtonId: 'S95SXYG34V6AJ' })
+      .render('#paypal-button-container');
   </script>
 
   <!-- Three.js -->
@@ -476,17 +527,30 @@
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.1, 1000);
     camera.position.z = 5;
+
     scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-    const pointLight = new THREE.PointLight(0xffffff, 1);
-    pointLight.position.set(5,5,5);
-    scene.add(pointLight);
-    const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(1,0.3,200,32), new THREE.MeshNormalMaterial({ flatShading:true }));
+    const pLight = new THREE.PointLight(0xffffff, 1);
+    pLight.position.set(5,5,5);
+    scene.add(pLight);
+
+    const knot = new THREE.Mesh(
+      new THREE.TorusKnotGeometry(1, 0.3, 200, 32),
+      new THREE.MeshNormalMaterial({ flatShading: true })
+    );
     scene.add(knot);
-    function animate() { requestAnimationFrame(animate); knot.rotation.x += 0.01; knot.rotation.y += 0.015; renderer.render(scene, camera); }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      knot.rotation.x += 0.01;
+      knot.rotation.y += 0.015;
+      renderer.render(scene, camera);
+    }
     animate();
+
     window.addEventListener('resize', () => {
       renderer.setSize(window.innerWidth, window.innerHeight);
       camera.aspect = window.innerWidth/window.innerHeight;
