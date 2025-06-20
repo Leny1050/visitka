@@ -317,6 +317,24 @@
       text-align:center; font-size:.85rem; color:var(--text-dim);
       padding:2rem 0;
     }
+    /* 2. Стили для кнопки (добавьте в <style>) */
+.lang-btn {
+  margin-left: 1rem;
+  padding: 0.4rem 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 30px;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+.lang-btn:hover {
+  background: var(--accent2);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
   </style>
 </head>
 <body>
@@ -328,14 +346,17 @@
   <nav>
     <div class="nav-wrap container">
       <div class="logo">Портфолио</div>
+
+      <button id="lang-toggle" class="btn lang-btn" data-lang="ro">RO</button>
+
       <button class="burger" id="burger" aria-label="Открыть меню">
         <i class="fas fa-bars"></i>
       </button>
       <div class="links" id="links">
-        <a href="#services">Услуги</a>
-        <a href="#portfolio">Портфолио</a>
-        <a href="#skills">Навыки</a>
-        <a href="#donate">Поддержать</a>
+        <a href="#services" data-i18n="nav-services">Услуги</a>
+        <a href="#portfolio" data-i18n="nav-portfolio">Портфолио</a>
+        <a href="#skills" data-i18n="nav-skills">Навыки</a>
+        <a href="#donate" data-i18n="nav-donate">Поддержать</a>
       </div>
     </div>
   </nav>
@@ -343,72 +364,72 @@
   <!-- Hero -->
   <header class="hero">
     <div class="hero-content glass center container" data-aos="zoom-out">
-      <h1>Я — начинающий разработчик <span id="typed">сайтов</span></h1>
-      <p data-aos="fade-up" data-aos-delay="200">
+      <h1 data-i18n="hero-title">Я — начинающий разработчик <span id="typed">сайтов</span></h1>
+      <p data-aos="fade-up" data-aos-delay="200" data-i18n="hero-desc">
         Знаю основы HTML, CSS, JavaScript и немного backend. Учусь быстро и люблю создавать красивые, живые страницы.
       </p>
-      <a href="https://t.me/shineSwa" class="btn" data-aos="zoom-in" data-aos-delay="400">Связаться</a>
+      <a href="https://t.me/shineSwa" class="btn" data-aos="zoom-in" data-aos-delay="400" data-i18n="hero-cta">Связаться</a>
     </div>
     <!-- Стрелка-подсказка --> <a href="#services" class="scroll-hint"><i class="fas fa-chevron-down"></i></a>
   </header>
 
   <!-- Services -->
   <section id="services" class="section">
-    <h2 data-aos="fade-up">Чем могу помочь</h2>
+    <h2 data-aos="fade-up" data-i18n="section-services-title">Чем могу помочь</h2>
     <div class="grid grid-2 container">
       <article class="card glass center" data-aos="fade-up">
         <i class="fas fa-code"></i>
-        <h3>Простые сайты</h3>
-        <p>С нуля на HTML & CSS. Чистая, аккуратная вёрстка.</p>
+        <h3 data-i18n="services-card1-title">Простые сайты</h3>
+        <p data-i18n="services-card1-desc">С нуля на HTML & CSS. Чистая, аккуратная вёрстка.</p>
       </article>
       <article class="card glass center" data-aos="fade-up" data-aos-delay="100">
         <i class="fas fa-magic"></i>
-        <h3>Анимация UI</h3>
-        <p>Добавлю лёгкие эффекты на JavaScript — сайт «оживёт».</p>
+        <h3 data-i18n="services-card2-title">Анимация UI</h3>
+        <p data-i18n="services-card2-desc">Добавлю лёгкие эффекты на JavaScript — сайт «оживёт».</p>
       </article>
       <article class="card glass center" data-aos="fade-up" data-aos-delay="200">
         <i class="fas fa-database"></i>
-        <h3>База данных</h3>
-        <p>MySQL + PHP: авторизация, формы, хранение данных.</p>
+        <h3 data-i18n="services-card3-title">База данных</h3>
+        <p data-i18n="services-card3-desc">MySQL + PHP: авторизация, формы, хранение данных.</p>
       </article>
       <article class="card glass center" data-aos="fade-up" data-aos-delay="300">
         <i class="fas fa-rocket"></i>
-        <h3>Расширяемость</h3>
-        <p>Готов учиться новым технологиям под задачи проекта.</p>
+        <h3 data-i18n="services-card4-title">Расширяемость</h3>
+        <p data-i18n="services-card4-desc">Готов учиться новым технологиям под задачи проекта.</p>
       </article>
     </div>
   </section>
 
   <!-- Portfolio -->
   <section id="portfolio" class="section">
-    <h2 data-aos="fade-up">Мои учебные проекты</h2>
+    <h2 data-aos="fade-up" data-i18n="section-portfolio-title">Мои учебные проекты</h2>
     <div class="grid grid-3 container">
       <article class="card glass center portfolio-item" data-aos="zoom-in">
         <a href="https://usermanagerpro.free.nf/public/index.php" target="_blank">
           <img src="f4.png" alt="User Manager Pro">
-          <h3>User Manager Pro</h3>
-          <p>PHP + MySQL регистрация.</p>
+          <h3 data-i18n="portfolio-item1-title">User Manager Pro</h3>
+          <p data-i18n="portfolio-item1-desc">PHP + MySQL регистрация.</p>
         </a>
       </article>
       <article class="card glass center portfolio-item" data-aos="zoom-in" data-aos-delay="80">
         <a href="https://commentsystem.free.nf/index.html" target="_blank">
           <img src="f5.png" alt="Comment System">
           <h3>Comment System</h3>
-          <p>Ajax-комментарии (WIP).</p>
+          <p data-i18n="portfolio-item2-desc">Ajax-комментарии (WIP).</p>
         </a>
       </article>
       <article class="card glass center portfolio-item" data-aos="zoom-in" data-aos-delay="160">
         <a href="https://leny1050.github.io/weather-app/" target="_blank">
           <img src="f1.jpg" alt="Weather App">
           <h3>Weather App</h3>
-          <p>Погода через API.</p>
+          <p data-i18n="portfolio-item3-desc">Погода через API.</p>
         </a>
       </article>
       <article class="card glass center portfolio-item" data-aos="zoom-in" data-aos-delay="320">
         <a href="https://leny1050.github.io/test/" target="_blank">
           <img src="f3.jpg" alt="Math Art">
           <h3>Math Art</h3>
-          <p>Canvas-генератив.</p>
+          <p data-i18n="portfolio-item4-desc">Canvas-генератив.</p>
         </a>
       </article>
     </div>
@@ -416,7 +437,7 @@
 
   <!-- Skills -->
   <section id="skills" class="section">
-    <h2 data-aos="fade-up">Мои навыки</h2>
+    <h2 data-aos="fade-up" data-i18n="section-skills-title">Мои навыки</h2>
     <div class="tags container center" data-aos="zoom-in">
       <span class="tag">HTML</span>
       <span class="tag">CSS</span>
@@ -436,10 +457,10 @@
 
   <!-- Donate -->
   <section id="donate" class="section">
-    <h2 data-aos="fade-up">Поддержать развитие</h2>
+    <h2 data-aos="fade-up" data-i18n="section-donate-title">Поддержать развитие</h2>
     <div class="donate-wrapper container" data-aos="zoom-in">
       <div class="donate-card glass no-tilt">
-        <h3>Любой донат ускорит выпуск новых проектов 🚀</h3>
+        <h3 data-i18n="donate-text">Любой донат ускорит выпуск новых проектов 🚀</h3>
         <div id="paypal-button-container"></div>
       </div>
     </div>
@@ -558,5 +579,127 @@
       camera.updateProjectionMatrix();
     });
   </script>
+
+  <!-- 4. Скрипт перевода (поставьте перед </body>) -->
+<script>
+  const translations = {
+    ro: {
+      /* Навигация и логотип */
+      'logo': 'Portofoliu',
+      'nav-services': 'Servicii',
+      'nav-portfolio': 'Portofoliu',
+      'nav-skills': 'Competențe',
+      'nav-donate': 'Susține',
+      'lang-button': 'RU',
+
+      /* Hero */
+      'hero-title': 'Sunt un dezvoltator web începător',
+      'hero-desc': 'Cunosc bazele HTML, CSS, JavaScript și puțin backend. Învăț rapid și îmi place să creez pagini frumoase și dinamice.',
+      'hero-cta': 'Contactează-mă',
+
+      /* Services */
+      'section-services-title': 'Cu ce te pot ajuta',
+      'services-card1-title': 'Site-uri simple',
+      'services-card1-desc': 'De la zero cu HTML & CSS. Cod curat și precis.',
+      'services-card2-title': 'Animație UI',
+      'services-card2-desc': 'Adaug efecte ușoare cu JavaScript — site-ul prinde viață.',
+      'services-card3-title': 'Bază de date',
+      'services-card3-desc': 'MySQL + PHP: autentificare, formulare, stocare date.',
+      'services-card4-title': 'Extensibilitate',
+      'services-card4-desc': 'Sunt pregătit să învăț tehnologii noi după necesități.',
+
+      /* Portfolio */
+      'section-portfolio-title': 'Proiectele mele de studiu',
+      'portfolio-item1-title': 'User Manager Pro',
+      'portfolio-item1-desc': 'PHP + MySQL pentru înregistrare.',
+      'portfolio-item2-title': 'Comment System',
+      'portfolio-item2-desc': 'Comentarii Ajax (WIP).',
+      'portfolio-item3-title': 'Weather App',
+      'portfolio-item3-desc': 'Vreme prin API.',
+      'portfolio-item4-title': 'Math Art',
+      'portfolio-item4-desc': 'Generativ pe canvas.',
+
+      /* Skills */
+      'section-skills-title': 'Competențele mele',
+
+      /* Donate */
+      'section-donate-title': 'Susține dezvoltarea',
+      'donate-text': 'Orice donație va accelera lansarea noilor proiecte 🚀',
+
+      /* Footer */
+      'footer-text': '© 2025 ShineSwa — începător care evoluează în fiecare zi.'
+    },
+    ru: {
+      /* Навигация и логотип */
+      'logo': 'Портфолио',
+      'nav-services': 'Услуги',
+      'nav-portfolio': 'Портфолио',
+      'nav-skills': 'Навыки',
+      'nav-donate': 'Поддержать',
+      'lang-button': 'RO',
+
+      /* Hero */
+      'hero-title': 'Я — начинающий разработчик сайтов',
+      'hero-desc': 'Знаю основы HTML, CSS, JavaScript и немного backend. Учусь быстро и люблю создавать красивые, живые страницы.',
+      'hero-cta': 'Связаться',
+
+      /* Services */
+      'section-services-title': 'Чем могу помочь',
+      'services-card1-title': 'Простые сайты',
+      'services-card1-desc': 'С нуля на HTML & CSS. Чистая, аккуратная вёрстка.',
+      'services-card2-title': 'Анимация UI',
+      'services-card2-desc': 'Добавлю лёгкие эффекты на JavaScript — сайт «оживёт».',
+      'services-card3-title': 'База данных',
+      'services-card3-desc': 'MySQL + PHP: авторизация, формы, хранение данных.',
+      'services-card4-title': 'Расширяемость',
+      'services-card4-desc': 'Готов учиться новым технологиям под задачи проекта.',
+
+      /* Portfolio */
+      'section-portfolio-title': 'Мои учебные проекты',
+      'portfolio-item1-title': 'User Manager Pro',
+      'portfolio-item1-desc': 'PHP + MySQL регистрация.',
+      'portfolio-item2-title': 'Comment System',
+      'portfolio-item2-desc': 'Ajax-комментарии (WIP).',
+      'portfolio-item3-title': 'Weather App',
+      'portfolio-item3-desc': 'Погода через API.',
+      'portfolio-item4-title': 'Math Art',
+      'portfolio-item4-desc': 'Canvas-генератив.',
+
+      /* Skills */
+      'section-skills-title': 'Мои навыки',
+
+      /* Donate */
+      'section-donate-title': 'Поддержать развитие',
+      'donate-text': 'Любой донат ускорит выпуск новых проектов 🚀',
+
+      /* Footer */
+      'footer-text': '© 2025 ShineSwa — новичок, который растёт каждый день.'
+    }
+  };
+
+  function updateLanguage(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const txt = translations[lang][key];
+      if (txt) el.innerHTML = txt;
+    });
+    // переключаем дата-атрибут для следующего языка
+    const btn = document.getElementById('lang-toggle');
+    btn.setAttribute('data-lang', lang === 'ru' ? 'ro' : 'ru');
+  }
+
+  document
+    .getElementById('lang-toggle')
+    .addEventListener('click', e => {
+      const next = e.target.getAttribute('data-lang');
+      updateLanguage(next);
+    });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updateLanguage('ru');
+  });
+</script>
+
+
 </body>
 </html>
